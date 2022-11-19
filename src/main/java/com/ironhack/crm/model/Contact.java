@@ -16,11 +16,11 @@ public class Contact {
     private String email;
     private String company;
 
-    public Contact(String name, String phoneNumber, String email, String company) {
+    public Contact(Lead lead) {
         setContactId(id++);
-        setName(name);
-        setPhoneNumber(phoneNumber);
-        setEmail(email);
-        setCompany(company);
+        setName(lead.getName());
+        setPhoneNumber(lead.getPhoneNumber());
+        setEmail(lead.getEmail());
+        setCompany(lead.getCompanyName());
     }
 }
