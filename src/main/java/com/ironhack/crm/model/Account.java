@@ -1,9 +1,9 @@
-package com.ironhack.crm;
+package com.ironhack.crm.model;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Company {
+public class Account {
 
     private String companyName;
     private String industry;

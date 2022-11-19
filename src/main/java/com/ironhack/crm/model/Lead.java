@@ -1,4 +1,4 @@
-package com.ironhack.crm;
+package com.ironhack.crm.model;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -13,20 +13,15 @@ public class Lead {
     private int leadId;
 
     private String name;
-    private int phoneNumber;
+    private String phoneNumber;
     private String email;
     private String companyName;
 
-    public Lead(String name, int phoneNumber, String email, String companyName) {
+    public Lead(String name, String phoneNumber, String email, String companyName) {
         setLeadId(id++);
         setName(name);
         setPhoneNumber(phoneNumber);
         setEmail(email);
         setCompanyName(companyName);
     }
-
-    // Method to get the general ID of LEAD (not the object id)
-//    public static int getId() {
-//        return id;
-//    }
 }

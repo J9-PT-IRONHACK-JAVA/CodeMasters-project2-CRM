@@ -1,4 +1,4 @@
-package com.ironhack.crm;
+package com.ironhack.crm.model;
 
 public enum OpportunityStatus {
     OPEN,
