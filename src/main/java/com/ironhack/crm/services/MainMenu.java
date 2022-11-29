@@ -1,4 +1,4 @@
-package com.ironhack.crm.model;
+package com.ironhack.crm.services;
 
 import com.ironhack.crm.services.ServiceManager;
 
