@@ -18,7 +18,7 @@ public class MainMenu {
             System.out.println("Type your command:");
             command = scanner.nextLine();
             if (command.equals("New Lead")) {
-                //Lead creation
+                LeadService.createNewLead(scanner);
             } else if (command.equals("Show Leads")) {
                 //Show all leads
             } else if (command.split(" ")[0].equals("Lookup")) {
