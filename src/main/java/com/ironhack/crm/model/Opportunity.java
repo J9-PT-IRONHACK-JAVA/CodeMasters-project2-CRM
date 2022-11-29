@@ -1,5 +1,7 @@
 package com.ironhack.crm.model;
 
+import com.ironhack.crm.utils.OpportunityStatus;
+import com.ironhack.crm.utils.Trucks;
 import lombok.*;
 
 import javax.persistence.*;
