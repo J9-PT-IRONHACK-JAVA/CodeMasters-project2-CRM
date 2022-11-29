@@ -19,6 +19,7 @@ public class Opportunity {
 
     private Trucks product;
     private Integer quantity;
+    @OneToOne
     private Contact decisionMaker;
     private OpportunityStatus status;
 

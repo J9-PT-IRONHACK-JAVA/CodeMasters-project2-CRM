@@ -17,8 +17,6 @@ class ServiceManagerTest {
     void setUp() {
         var lead1 = new Lead("Mike Michaels", "+34 666123456", "mike.michaels@fakemail.com",
                 "Desatranques Jaen");
-
-
     }
 
     @AfterEach

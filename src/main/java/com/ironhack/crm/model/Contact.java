@@ -25,5 +25,5 @@ public class Contact {
         setEmail(lead.getEmail());
         setCompany(lead.getCompanyName());
     }
-
 }
+
