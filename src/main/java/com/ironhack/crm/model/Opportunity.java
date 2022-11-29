@@ -1,16 +1,16 @@
 package com.ironhack.crm.model;
 
+import com.ironhack.crm.utils.OpportunityStatus;
+import com.ironhack.crm.utils.Trucks;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.HashMap;
 
 @Data
 @NoArgsConstructor
 @Entity
+@Table(name = "opportunities")
 public class Opportunity {
 
     @Id
@@ -19,6 +19,7 @@ public class Opportunity {
 
     private Trucks product;
     private Integer quantity;
+    @OneToOne
     private Contact decisionMaker;
     private OpportunityStatus status;
 

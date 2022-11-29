@@ -2,15 +2,12 @@ package com.ironhack.crm.model;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
-@Entity
 @NoArgsConstructor
-@AllArgsConstructor
+@Entity
+@Table(name = "leads")
 public class Lead {
 
     @Id
