@@ -1,4 +1,6 @@
-package com.ironhack.crm.model;
+package com.ironhack.crm.services;
+
+import com.ironhack.crm.services.ServiceManager;
 
 import java.util.Scanner;
 
@@ -11,6 +13,8 @@ public class MainMenu {
 
 
         do {
+            ServiceManager.displayAvailableCommands();
+
             System.out.println("Type your command:");
             command = scanner.nextLine();
             if (command.equals("New Lead")) {
@@ -22,7 +26,10 @@ public class MainMenu {
             } else if (command.split(" ")[0].equals("convert")) {
                 //Convert Lead to Opportunity
             } else if (command.split("-")[0].equals("close")) {
-                //Change opportunity status
+                Long id = Long.valueOf(command.split(" ")[1]);
+
+                ServiceManager.changeOpportunityStatus(id, command);
+
             } else {
                 System.out.println("Wrong command!");
             }

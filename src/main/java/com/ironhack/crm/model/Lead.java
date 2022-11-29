@@ -7,16 +7,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Setter
-@Getter
-@ToString
+@Data
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
 public class Lead {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int leadId;
+    private Long leadId;
     private String name;
     private String phoneNumber;
     private String email;
