@@ -15,10 +15,8 @@ class ServiceManagerTest {
 
     @BeforeEach
     void setUp() {
-        var lead1 = new Lead(134L,"Mike Michaels", "+34 666123456", "mike.michaels@fakemail.com",
+        var lead1 = new Lead("Mike Michaels", "+34 666123456", "mike.michaels@fakemail.com",
                 "Desatranques Jaen");
-
-
     }
 
     @AfterEach
@@ -36,7 +34,7 @@ class ServiceManagerTest {
 
     @Test
     void convertLeadToContact() {
-        var lead2 = new Lead(135L,"Pepe Perez", "+34 666654321", "pepe.perez@fakemail.com",
+        var lead2 = new Lead("Pepe Perez", "+34 666654321", "pepe.perez@fakemail.com",
                 "Desatranques Jaen");
         var contact1 = ServiceManager.convertLeadToContact(lead2);
 
