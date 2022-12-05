@@ -1,24 +1,47 @@
 package com.ironhack.crm.services;
 
 import com.ironhack.crm.services.ServiceManager;
+import com.ironhack.crm.utils.Commands;
+import com.ironhack.crm.utils.ScannerConfig;
+import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 
+@Component
 public class MainMenu {
 
-    public static void start() {
+    private final LeadService leadService;
+    private final OpportunityService opportunityService;
+    private final ContactService contactService;
+    private final SalesRepService salesRepService;
+    private final AccountService accountService;
+    private final Scanner userInput;
+    private final Commands commands;
 
-        var scanner = new Scanner(System.in);
+    public MainMenu(LeadService leadService, OpportunityService opportunityService, ContactService contactService,
+                    SalesRepService salesRepService, AccountService accountService, Scanner userInput, Commands commands) {
+        this.leadService = leadService;
+        this.opportunityService = opportunityService;
+        this.contactService = contactService;
+        this.salesRepService = salesRepService;
+        this.accountService = accountService;
+        this.userInput = userInput;
+        this.commands = commands;
+    }
+
+    public void start() {
+
         String command = "start";
 
 
         do {
-            ServiceManager.displayAvailableCommands();
+            commands.displayAvailableCommands();
 
             System.out.println("Type your command:");
-            command = scanner.nextLine();
+            command = userInput.nextLine();
+
             if (command.equals("New Lead")) {
-                LeadService.createNewLead(scanner);
+                leadService.createNewLead(userInput);
             } else if (command.equals("Show Leads")) {
                 //Show all leads
             } else if (command.split(" ")[0].equals("Lookup")) {
@@ -28,11 +51,11 @@ public class MainMenu {
             } else if (command.split("-")[0].equals("close")) {
                 Long id = Long.valueOf(command.split(" ")[1]);
 
-                ServiceManager.changeOpportunityStatus(id, command);
+                opportunityService.changeOpportunityStatus(id, command);
 
             } else {
                 System.out.println("Wrong command!");
             }
-        }while(!command.equals("exit"));
+        } while(!command.equals("exit"));
     }
 }
