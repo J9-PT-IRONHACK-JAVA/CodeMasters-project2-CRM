@@ -44,8 +44,8 @@ public class MainMenu {
                 leadService.createNewLead(userInput);
             } else if (command.equals("Show Leads")) {
                 //Show all leads
-            } else if (command.split(" ")[0].equals("Lookup")) {
-                //Look up
+            } else if (command.split(" ")[0].equals("lookup")) {
+                opportunityService.printOpportunity(command);
             } else if (command.split(" ")[0].equals("convert")) {
                 //Convert Lead to Opportunity
             } else if (command.split("-")[0].equals("close")) {
