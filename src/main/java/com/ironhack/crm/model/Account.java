@@ -6,9 +6,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Setter
-@Getter
-@ToString
+@Data
 @Entity
 @NoArgsConstructor
 @Table(name = "accounts")
