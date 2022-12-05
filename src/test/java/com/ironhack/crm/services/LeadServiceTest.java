@@ -34,18 +34,25 @@ class LeadServiceTest {
     }
 
     @Test
-    void createNewLead() {
+    void createNewLeadAndAddToRepo() {
+        var initialCount = leadRepository.count();
+        var lead2 = new Lead("Pepe Perez", "+34 666654321", "pepe.perez@fakemail.com",
+                "Desatranques Jaen");
+        leadRepository.save(lead2);
+        var postCount = leadRepository.count();
+        assertEquals(1, postCount - initialCount);
+
     }
 
     @Test
     void convertLeadToContact() {
-        var lead2 = new Lead("Pepe Perez", "+34 666654321", "pepe.perez@fakemail.com",
+        var lead3 = new Lead("Maria Gomez", "+34 666879321", "maria.gomez@fakemail.com",
                 "Desatranques Jaen");
-        leadRepository.save(lead2);
-        Long lead2Id = lead2.getLeadId();
-        var contact1 = leadService.convertLeadToContact(lead2Id);
+        leadRepository.save(lead3);
+        Long lead3Id = lead3.getLeadId();
+        var contact1 = leadService.convertLeadToContact(lead3Id);
 
-        assertSame("Pepe Perez", contact1.getName());
+        assertSame("Maria Gomez", contact1.getName());
     }
 
     @Test

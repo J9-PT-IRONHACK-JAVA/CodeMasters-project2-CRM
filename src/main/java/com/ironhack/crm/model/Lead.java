@@ -24,4 +24,14 @@ public class Lead {
         setEmail(email);
         setCompanyName(companyName);
     }
+
+    @Override
+    public String toString() {
+        return "Lead: \n" +
+                "   id= " + leadId + "\n" +
+                "   name= " + name + "\n" +
+                "   phoneNumber= " + phoneNumber + "\n" +
+                "   email= " + email + "\n" +
+                "   companyName= " + companyName + "\n";
+    }
 }

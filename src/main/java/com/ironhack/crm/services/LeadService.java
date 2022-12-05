@@ -40,44 +40,50 @@ public class LeadService {
         String companyName = null;
 
         while (leadName == null) {
-            System.out.println("Please introduce the name of your new lead\n");
+            System.out.println("Please introduce the name of your new lead");
 
             if (userInput.hasNextLine()) {
                 if (!inputValidations.validateName(userInput.nextLine())) {
                     System.out.println("Wrong input. Please introduce a name in the format 'Firstname Lastname'.\n");
                 } else leadName = userInput.nextLine();
             }
+
         }
 
         while (phoneNumber == null) {
-            System.out.println("Please introduce the phone number of your new lead\n");
+            System.out.println("Please introduce the phone number of your new lead");
 
             if (userInput.hasNextLine()) {
                 if (!inputValidations.validatePhone(userInput.nextLine())) {
-                    System.out.println("Wrong input. Please introduce a valid phone number.\n");
+                    System.out.println("Wrong input. Please introduce a valid phone number.");
                 } else phoneNumber = userInput.nextLine();
             }
+
         }
 
         while (email == null) {
-            System.out.println("Please introduce the email address of your new lead\n");
+            System.out.println("Please introduce the email address of your new lead");
 
             if (userInput.hasNextLine()) {
                 if (!inputValidations.validateEmail(userInput.nextLine())) {
-                    System.out.println("Wrong input. Please introduce a valid email. \n");
+                    System.out.println("Wrong input. Please introduce a valid email.");
                 } else email = userInput.nextLine();
             }
+
         }
 
         while (companyName == null) {
-            System.out.println("Please introduce the Company Name of your new lead\n");
+            System.out.println("Please introduce the Company Name of your new lead");
 
             if (userInput.hasNextLine()) companyName = userInput.nextLine();
+
         }
 
         Lead newLead = new Lead(leadName, phoneNumber, email, companyName);
 
         leadRepository.save(newLead);
+
+        System.out.println(newLead);
 
         return newLead;
     }
@@ -100,6 +106,11 @@ public class LeadService {
         opportunityRepository.save(opportunity);
 
         return opportunity;
+    }
+
+    public void findLeadByName(String name) {
+        var lead = leadRepository.findLeadByNameEquals(name);
+        System.out.println(lead);
     }
 
     // delete lead (after contact added to an account)

@@ -1,4 +1,4 @@
-package com.ironhack.crm.model;
+package com.ironhack.crm.utils;
 
 public enum Trucks {
     HYBRID,
