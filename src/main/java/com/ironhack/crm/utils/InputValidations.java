@@ -1,5 +1,8 @@
 package com.ironhack.crm.utils;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class InputValidations {
 
     public static boolean validateName(String name) {
