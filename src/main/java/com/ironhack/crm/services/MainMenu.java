@@ -33,9 +33,9 @@ public class MainMenu {
 
         String command = "start";
 
+        commands.displayAvailableCommands();
 
         do {
-            commands.displayAvailableCommands();
 
             System.out.println("Type your command:");
             command = userInput.nextLine();
