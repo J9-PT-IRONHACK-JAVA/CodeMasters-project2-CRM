@@ -1,26 +1,29 @@
 package com.ironhack.crm.model;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
-@Setter
-@Getter
-@ToString
+import javax.persistence.*;
+
+@Data
+@NoArgsConstructor
+@Entity
+@Table(name = "contacts")
 public class Contact {
 
-    private static int id = 0;
-    private int contactId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long contactId;
+
     private String name;
     private String phoneNumber;
     private String email;
     private String company;
 
     public Contact(Lead lead) {
-        setContactId(id++);
         setName(lead.getName());
         setPhoneNumber(lead.getPhoneNumber());
         setEmail(lead.getEmail());
         setCompany(lead.getCompanyName());
     }
 }
+

@@ -1,26 +1,44 @@
 package com.ironhack.crm.model;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import com.ironhack.crm.utils.OpportunityStatus;
+import com.ironhack.crm.utils.Trucks;
+import lombok.*;
 
-@Setter
-@Getter
-@ToString
+import javax.persistence.*;
+import java.util.HashMap;
+
+@Data
+@NoArgsConstructor
+@Entity
+@Table(name = "opportunities")
 public class Opportunity {
 
-    private static int id = 0;
-    private int opportunityId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long opportunityId;
+
     private Trucks product;
-    private int quantity;
+    private Integer quantity;
+    @OneToOne
     private Contact decisionMaker;
     private OpportunityStatus status;
 
-    public Opportunity(Trucks product, int quantity, Contact decisionMaker, OpportunityStatus status) {
-        setOpportunityId(id++);
+    // hashmap de ooportunities por id para que sea fácil buscar y modificarlas (change status)
+    public static HashMap<Long, Opportunity> mapOfOpportunities = new HashMap<>();
+
+    public Opportunity(Trucks product, int quantity, Contact decisionMaker) {
         setProduct(product);
         setQuantity(quantity);
         setDecisionMaker(decisionMaker);
-        setStatus(status);
+        setStatus(OpportunityStatus.OPEN);
+
+        // PENDING: add opport to hasmap
     }
+
+    public static Opportunity findOpportunityById(Long opportunityId){
+
+
+        return null;
+    }
+
 }
