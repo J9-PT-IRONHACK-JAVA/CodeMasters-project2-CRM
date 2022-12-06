@@ -1,7 +1,6 @@
 package com.ironhack.crm.services;
 
 import com.ironhack.crm.model.Contact;
-import com.ironhack.crm.model.Lead;
 import com.ironhack.crm.model.Opportunity;
 import com.ironhack.crm.repository.OpportunityRepository;
 import com.ironhack.crm.utils.OpportunityStatus;
@@ -25,8 +24,10 @@ public class OpportunityService {
         String selectedProduct = null;
         Integer quantityDesired = null;
 
-        System.out.println("Please, input the " + "\033[1;32m" + "desired product" + "\033[0m" + " for this opportunity \n"
-                + "You may one of the following: Hybrid Truck, Flatbed Truck, or Box Truck\n");
+        System.out.println("""
+                Please, input the \033[1;32mdesired product\033[0m for this opportunity\s
+                You may one of the following: Hybrid Truck, Flatbed Truck, or Box Truck
+                """);
 
         while (selectedProduct == null) {
             try {
@@ -52,12 +53,16 @@ public class OpportunityService {
         while (quantityDesired == null) {
             try {
                 if (!userInput.hasNextInt()) {
-                    System.out.println("Invalid input:\nPlease introduce an integer number corresponding to the " +
-                            "amount of trucks desired by the potential customer.\n");
+                    System.out.println("""
+                            Invalid input:
+                            Please introduce an integer number corresponding to the amount of trucks desired by the potential customer.
+                            """);
                 } else selectedProduct = userInput.nextLine();
             } catch (IllegalArgumentException e) {
-                System.out.println("Invalid input:\nPlease introduce an integer number corresponding to the " +
-                        "amount of trucks desired by the potential customer.\n");
+                System.out.println("""
+                        Invalid input:
+                        Please introduce an integer number corresponding to the amount of trucks desired by the potential customer.
+                        """);
             }
         }
         opportunityFromLead.setQuantity(quantityDesired);
@@ -70,13 +75,27 @@ public class OpportunityService {
     public void changeOpportunityStatus(Long opportunityId, String command) {
 
         if (command.split("-")[1].equals("won")) {
-            Opportunity opportunityToUpdate = opportunityRepository.findOpportunityByOpportunityId(opportunityId);
-            opportunityToUpdate.setStatus(OpportunityStatus.CLOSED_WON);
-            opportunityRepository.save(opportunityToUpdate);
+            var opportunityToUpdate = opportunityRepository.findOpportunityByOpportunityId(opportunityId);
+            if (opportunityToUpdate.isPresent()) {
+                opportunityToUpdate.get().setStatus(OpportunityStatus.CLOSED_WON);
+                opportunityRepository.save(opportunityToUpdate.get());
+            }
         } else if (command.split("-")[1].equals("lost")) {
-            Opportunity opportunityToUpdate =  opportunityRepository.findOpportunityByOpportunityId(opportunityId);
-            opportunityToUpdate.setStatus(OpportunityStatus.CLOSED_LOST);
-            opportunityRepository.save(opportunityToUpdate);
+            var opportunityToUpdate =  opportunityRepository.findOpportunityByOpportunityId(opportunityId);
+            if (opportunityToUpdate.isPresent()) {
+                opportunityToUpdate.get().setStatus(OpportunityStatus.CLOSED_LOST);
+                opportunityRepository.save(opportunityToUpdate.get());
+            }
+        }
+    }
+
+    public void printOpportunity(String command) {
+        var oppId = Long.parseLong(command.split(" ")[1]);
+        var opportunity = opportunityRepository.findOpportunityByOpportunityId(oppId);
+        if (opportunity.isPresent()) {
+            System.out.println(opportunity);
+        } else {
+            System.out.println("Any opportunity has this ID!");
         }
     }
 
