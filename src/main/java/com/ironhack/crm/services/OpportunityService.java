@@ -19,7 +19,7 @@ public class OpportunityService {
     }
 
     // opportunity creation
-    public Opportunity createOpportunity(Contact decisionMaker, Scanner userInput) {
+    public Opportunity createOpportunityFromContact(Contact decisionMaker, Scanner userInput) {
         var opportunityFromLead = new Opportunity(decisionMaker, OpportunityStatus.OPEN);
         String selectedProduct = null;
         Integer quantityDesired = null;
@@ -95,9 +95,13 @@ public class OpportunityService {
         if (opportunity.isPresent()) {
             System.out.println(opportunity);
         } else {
-            System.out.println("Any opportunity has this ID!");
+            System.out.println("No opportunity matches this ID.");
         }
     }
 
+    public void showAllOpps() {
+        var opportunities = opportunityRepository.findAll();
+        System.out.println(opportunities);
+    }
 
 }

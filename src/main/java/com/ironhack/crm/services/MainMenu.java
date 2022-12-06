@@ -42,16 +42,26 @@ public class MainMenu {
 
             if (command.equals("New Lead")) {
                 leadService.createNewLead(userInput);
+
             } else if (command.equals("Show Leads")) {
-                //Show all leads
-            } else if (command.split(" ")[0].equals("lookup")) {
+                leadService.showAllLeads();
+
+            } else if (command.split(" ")[0].equals("Lookup")) {
                 opportunityService.printOpportunity(command);
+
             } else if (command.split(" ")[0].equals("convert")) {
-                //Convert Lead to Opportunity
+                Long id = Long.valueOf(command.split(" ")[1]);
+                leadService.leadToOpportunity(id, userInput);
+
             } else if (command.split("-")[0].equals("close")) {
                 Long id = Long.valueOf(command.split(" ")[1]);
-
                 opportunityService.changeOpportunityStatus(id, command);
+
+            } else if (command.equals("show commands")) {
+                commands.displayAvailableCommands();
+
+            } else if (command.equals("Show Opportunities")) {
+                opportunityService.showAllOpps();
 
             } else {
                 System.out.println("Wrong command!");
