@@ -1,44 +1,37 @@
 package com.ironhack.crm.services;
 
+import com.ironhack.crm.CrmApplication;
 import com.ironhack.crm.model.Lead;
 import com.ironhack.crm.repository.ContactRepository;
 import com.ironhack.crm.repository.LeadRepository;
 import com.ironhack.crm.repository.OpportunityRepository;
+import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
+@RequiredArgsConstructor
 class LeadServiceTest {
 
-    private final LeadService leadService;
-    private final LeadRepository leadRepository;
 
-    private final OpportunityRepository opportunityRepository;
+    @MockBean
+    CrmApplication crmApplication;
 
-    private final ContactRepository contactRepository;
-
-    public LeadServiceTest(LeadService leadService, LeadRepository leadRepository,
-                           OpportunityRepository opportunityRepository, ContactRepository contactRepository) {
-        this.leadService = leadService;
-        this.leadRepository = leadRepository;
-        this.opportunityRepository = opportunityRepository;
-        this.contactRepository = contactRepository;
-    }
-
-//    @Autowired
-//    private LeadService leadService;
-//    @Autowired
-//    private LeadRepository leadRepository;
-//    @Autowired
-//    private OpportunityRepository opportunityRepository;
-//    @Autowired
-//    private ContactRepository contactRepository;
+    @Autowired
+    private LeadService leadService;
+    @Autowired
+    private LeadRepository leadRepository;
+    @Autowired
+    private OpportunityRepository opportunityRepository;
+    @Autowired
+    private ContactRepository contactRepository;
 
 
     @BeforeEach
@@ -56,12 +49,12 @@ class LeadServiceTest {
 
     @Test
     void createNewLeadAndAddToRepo() {
-        /* var initialCount = leadRepository.count();
+        var initialCount = leadRepository.count();
         var lead2 = new Lead("Pepe Perez", "+34 666654321", "pepe.perez@fakemail.com",
                 "Desatranques Jaen");
         leadRepository.save(lead2);
         var postCount = leadRepository.count();
-        assertEquals(1, postCount - initialCount); */
+        assertEquals(1, postCount - initialCount);
 
     }
 
@@ -82,7 +75,7 @@ class LeadServiceTest {
         Long lead3Id = lead3.getLeadId();
         var contact1 = leadService.convertLeadToContact(lead3Id);
         contactRepository.save(contact1);
-        assertSame("Maria Gomez", contact1.getName());
+        assertEquals("Maria Gomez", contact1.getName());
     }
 
     @Test
