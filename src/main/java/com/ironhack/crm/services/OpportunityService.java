@@ -13,13 +13,15 @@ import java.util.Scanner;
 public class OpportunityService {
 
     private final OpportunityRepository opportunityRepository;
+    private final Scanner userInput;
 
-    public OpportunityService(OpportunityRepository opportunityRepository) {
+    public OpportunityService(OpportunityRepository opportunityRepository, Scanner userInput) {
         this.opportunityRepository = opportunityRepository;
+        this.userInput = userInput;
     }
 
     // opportunity creation
-    public Opportunity createOpportunityFromContact(Contact decisionMaker, Scanner userInput) {
+    public Opportunity createOpportunityFromContact(Contact decisionMaker) {
         var opportunityFromLead = new Opportunity(decisionMaker, OpportunityStatus.OPEN);
         String selectedProduct = null;
         Integer quantityDesired = null;
@@ -30,34 +32,35 @@ public class OpportunityService {
                 """);
 
         while (selectedProduct == null) {
+
             try {
-                if (userInput.nextLine().toLowerCase() != "hybrid truck"
-                        || userInput.nextLine().toLowerCase() !=  "flatbed truck"
-                        || userInput.nextLine().toLowerCase() != "box truck") {
-                    System.out.println("Invalid input:\nPlease introduce one of the following: Hybrid Truck, Flatbed Truck, or Box Truck\n");
-                } else selectedProduct = userInput.nextLine();
+                switch (userInput.nextLine().toLowerCase()) {
+                    case "hybrid truck" -> selectedProduct = "hybrid truck";
+                    case "flatbed truck" -> selectedProduct = "flatbed truck";
+                    case "box truck" -> selectedProduct = "box truck";
+                }
+
             } catch (IllegalArgumentException e) {
-                System.out.println("Invalid input:\nPlease introduce one of the following: Hybrid Truck, Flatbed Truck, or Box Truck\n");
+                System.out.println("Exception - Invalid input:\nPlease introduce one of the following: Hybrid Truck, Flatbed Truck, or Box Truck\n");
             }
         }
-
         switch (selectedProduct.toLowerCase()) {
             case "hybrid truck" -> opportunityFromLead.setProduct(Trucks.HYBRID);
             case "flatbed truck" -> opportunityFromLead.setProduct(Trucks.FLATBED);
             case "box truck" -> opportunityFromLead.setProduct(Trucks.BOX);
         }
 
-        System.out.println("Please, input the " + "\033[1;32m" + "desired quantity" + "\033[0m" + " of products for"
-                + "this opportunity. Only integer numbers are accepted as input. \n");
+        System.out.println("""
+                Please, input the \033[1;32mdesired quantity\033[0m of products for this opportunity. 
+                Only integer numbers are accepted as input.
+                """);
 
         while (quantityDesired == null) {
             try {
-                if (!userInput.hasNextInt()) {
-                    System.out.println("""
-                            Invalid input:
-                            Please introduce an integer number corresponding to the amount of trucks desired by the potential customer.
-                            """);
-                } else selectedProduct = userInput.nextLine();
+
+                var quantity = Integer.parseInt(userInput.nextLine());
+
+                selectedProduct = userInput.nextLine();
             } catch (IllegalArgumentException e) {
                 System.out.println("""
                         Invalid input:

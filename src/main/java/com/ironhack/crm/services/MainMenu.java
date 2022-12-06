@@ -41,7 +41,7 @@ public class MainMenu {
             command = userInput.nextLine();
 
             if (command.equals("New Lead")) {
-                leadService.createNewLead(userInput);
+                leadService.createNewLead();
 
             } else if (command.equals("Show Leads")) {
                 leadService.showAllLeads();
@@ -51,7 +51,7 @@ public class MainMenu {
 
             } else if (command.split(" ")[0].equals("convert")) {
                 Long id = Long.valueOf(command.split(" ")[1]);
-                leadService.leadToOpportunity(id, userInput);
+                leadService.leadToOpportunity(id);
 
             } else if (command.split("-")[0].equals("close")) {
                 Long id = Long.valueOf(command.split(" ")[1]);
@@ -67,5 +67,6 @@ public class MainMenu {
                 System.out.println("Wrong command!");
             }
         } while(!command.equals("exit"));
+        userInput.close();
     }
 }

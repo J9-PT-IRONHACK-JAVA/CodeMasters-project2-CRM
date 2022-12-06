@@ -16,82 +16,70 @@ public class LeadService {
 
     private final LeadRepository leadRepository;
     private final ContactRepository contactRepository;
-    private final InputValidations inputValidations;
     private final OpportunityService opportunityService;
     private final Scanner userInput;
     private final OpportunityRepository opportunityRepository;
 
     public LeadService(LeadRepository leadRepository, ContactRepository contactRepository,
-                       InputValidations inputValidations, OpportunityService opportunityService, Scanner userInput,
+                       OpportunityService opportunityService, Scanner userInput,
                        OpportunityRepository opportunityRepository) {
         this.leadRepository = leadRepository;
         this.contactRepository = contactRepository;
-        this.inputValidations = inputValidations;
         this.opportunityService = opportunityService;
         this.userInput = userInput;
         this.opportunityRepository = opportunityRepository;
     }
 
-    public Lead createNewLead(Scanner userInput) {
+    public Lead createNewLead() {
         var newLead = new Lead();
         String leadName = null;
         String phoneNumber = null;
         String email = null;
         String companyName = null;
 
-        while (leadName == null || leadName == "") {
+        while (leadName == null || leadName.equals("")) {
             System.out.println("Please introduce the name of your new lead");
 
-            if (userInput.hasNextLine()) {
-                if (!inputValidations.validateName(userInput.nextLine())) {
-                    System.out.println("Wrong input. Please introduce a name in the format 'Firstname Lastname'.\n");
-                } else {
-                    leadName = userInput.nextLine();
-                    newLead.setName(leadName);
-                }
-            }
+            var input= userInput.nextLine();
+
+            if (!InputValidations.validateName(input)) {
+                System.out.println("Wrong input. Please introduce a name in the format 'Firstname Lastname'.\n");
+
+            } else leadName = userInput.nextLine();
 
         }
+        newLead.setName(leadName);
 
         while (phoneNumber == null) {
             System.out.println("Please introduce the phone number of your new lead");
 
-            if (userInput.hasNextLine()) {
-                if (!inputValidations.validatePhone(userInput.nextLine())) {
-                    System.out.println("Wrong input. Please introduce a valid phone number.");
-                } else {
-                    phoneNumber = userInput.nextLine();
-                    newLead.setPhoneNumber(phoneNumber);
-                }
-            }
+            var input = userInput.nextLine();
 
+            if (!InputValidations.validatePhone(input)) {
+                System.out.println("Wrong input. Please introduce a valid phone number.");
+            } else phoneNumber = userInput.nextLine();
         }
+        newLead.setPhoneNumber(phoneNumber);
 
         while (email == null) {
             System.out.println("Please introduce the email address of your new lead");
 
-            if (userInput.hasNextLine()) {
-                if (!inputValidations.validateEmail(userInput.nextLine())) {
-                    System.out.println("Wrong input. Please introduce a valid email.");
-                } else {
-                    email = userInput.nextLine();
-                    newLead.setEmail(email);
-                }
-            }
+            var input = userInput.nextLine();
 
+            if (!InputValidations.validateEmail(userInput.nextLine())) {
+                System.out.println("Wrong input. Please introduce a valid email.");
+            } else email = userInput.nextLine();
         }
+        newLead.setEmail(email);
 
         while (companyName == null) {
             System.out.println("Please introduce the Company Name of your new lead");
 
             if (userInput.hasNextLine()) {
                 companyName = userInput.nextLine();
-                newLead.setCompanyName(companyName);
             }
-
         }
-
-//        Lead newLead = new Lead(leadName, phoneNumber, email, companyName);
+        newLead.setCompanyName(companyName);
 
         leadRepository.save(newLead);
 
@@ -103,17 +91,17 @@ public class LeadService {
     // lead to contact conversion
     public Contact convertLeadToContact(Long leadId) {
         var leadToConvert = leadRepository.findLeadByLeadId(leadId);
-        var contactFromLead = convertLeadToContact(leadId);
+        var contactFromLead = new Contact(leadToConvert);
         contactRepository.save(contactFromLead);
         return contactFromLead;
     }
 
     // lead to opportunity conversion (aggregates lead->contact + opp creation)
-    public Opportunity leadToOpportunity(Long leadId, Scanner userInput) {
+    public Opportunity leadToOpportunity(Long leadId) {
 
         var opportunityDecisionMaker = convertLeadToContact(leadId);
 
-        var opportunity = opportunityService.createOpportunityFromContact(opportunityDecisionMaker, userInput);
+        var opportunity = opportunityService.createOpportunityFromContact(opportunityDecisionMaker);
 
         opportunityRepository.save(opportunity);
 
@@ -131,4 +119,5 @@ public class LeadService {
     }
 
     // delete lead (after contact added to an account)
+
 }
