@@ -7,7 +7,6 @@ import com.ironhack.crm.repository.ContactRepository;
 import com.ironhack.crm.repository.LeadRepository;
 import com.ironhack.crm.repository.OpportunityRepository;
 import com.ironhack.crm.utils.InputValidations;
-import com.ironhack.crm.utils.ScannerConfig;
 import org.springframework.stereotype.Service;
 
 import java.util.Scanner;
@@ -34,18 +33,22 @@ public class LeadService {
     }
 
     public Lead createNewLead(Scanner userInput) {
+        var newLead = new Lead();
         String leadName = null;
         String phoneNumber = null;
         String email = null;
         String companyName = null;
 
-        while (leadName == null) {
+        while (leadName == null || leadName == "") {
             System.out.println("Please introduce the name of your new lead");
 
             if (userInput.hasNextLine()) {
                 if (!inputValidations.validateName(userInput.nextLine())) {
                     System.out.println("Wrong input. Please introduce a name in the format 'Firstname Lastname'.\n");
-                } else leadName = userInput.nextLine();
+                } else {
+                    leadName = userInput.nextLine();
+                    newLead.setName(leadName);
+                }
             }
 
         }
@@ -56,7 +59,10 @@ public class LeadService {
             if (userInput.hasNextLine()) {
                 if (!inputValidations.validatePhone(userInput.nextLine())) {
                     System.out.println("Wrong input. Please introduce a valid phone number.");
-                } else phoneNumber = userInput.nextLine();
+                } else {
+                    phoneNumber = userInput.nextLine();
+                    newLead.setPhoneNumber(phoneNumber);
+                }
             }
 
         }
@@ -67,7 +73,10 @@ public class LeadService {
             if (userInput.hasNextLine()) {
                 if (!inputValidations.validateEmail(userInput.nextLine())) {
                     System.out.println("Wrong input. Please introduce a valid email.");
-                } else email = userInput.nextLine();
+                } else {
+                    email = userInput.nextLine();
+                    newLead.setEmail(email);
+                }
             }
 
         }
@@ -75,11 +84,14 @@ public class LeadService {
         while (companyName == null) {
             System.out.println("Please introduce the Company Name of your new lead");
 
-            if (userInput.hasNextLine()) companyName = userInput.nextLine();
+            if (userInput.hasNextLine()) {
+                companyName = userInput.nextLine();
+                newLead.setCompanyName(companyName);
+            }
 
         }
 
-        Lead newLead = new Lead(leadName, phoneNumber, email, companyName);
+//        Lead newLead = new Lead(leadName, phoneNumber, email, companyName);
 
         leadRepository.save(newLead);
 
@@ -91,7 +103,7 @@ public class LeadService {
     // lead to contact conversion
     public Contact convertLeadToContact(Long leadId) {
         var leadToConvert = leadRepository.findLeadByLeadId(leadId);
-        var contactFromLead = new Contact(leadToConvert);
+        var contactFromLead = convertLeadToContact(leadId);
         contactRepository.save(contactFromLead);
         return contactFromLead;
     }
@@ -99,9 +111,9 @@ public class LeadService {
     // lead to opportunity conversion (aggregates lead->contact + opp creation)
     public Opportunity leadToOpportunity(Long leadId, Scanner userInput) {
 
-        Contact opportunityDecisionMaker = convertLeadToContact(leadId);
+        var opportunityDecisionMaker = convertLeadToContact(leadId);
 
-        Opportunity opportunity = opportunityService.createOpportunity(opportunityDecisionMaker, userInput);
+        var opportunity = opportunityService.createOpportunityFromContact(opportunityDecisionMaker, userInput);
 
         opportunityRepository.save(opportunity);
 
@@ -111,6 +123,11 @@ public class LeadService {
     public void findLeadByName(String name) {
         var lead = leadRepository.findLeadByNameEquals(name);
         System.out.println(lead);
+    }
+
+    public void showAllLeads() {
+        var leads = leadRepository.findAll();
+        System.out.println(leads);
     }
 
     // delete lead (after contact added to an account)
