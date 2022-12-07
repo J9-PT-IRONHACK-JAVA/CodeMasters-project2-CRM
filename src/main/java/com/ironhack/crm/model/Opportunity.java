@@ -34,4 +34,14 @@ public class Opportunity {
         this.decisionMaker = decisionMaker;
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "Opportunity:\n"
+                + " opportunityId= " + opportunityId + "\n"
+                + " product=" + product + "\n"
+                + " quantity=" + quantity + "\n"
+                + " decisionMaker=" + decisionMaker + "\n"
+                + " status=" + status + "\n";
+    }
 }

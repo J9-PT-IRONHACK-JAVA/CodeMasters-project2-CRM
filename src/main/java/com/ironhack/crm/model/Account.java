@@ -3,7 +3,6 @@ package com.ironhack.crm.model;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -17,15 +16,24 @@ public class Account {
     private int id;
     private String companyName;
     private String industry;
-    private int employees;
+    private Integer employees;
     private String city;
     private String country;
+    @OneToMany
+    private List<Contact> contacts;
+    @OneToMany
+    private List<Opportunity> opportunities;
 
-    public Account(String companyName, String industry, int employees, String city, String country) {
-        setCompanyName(companyName);
-        setIndustry(industry);
-        setEmployees(employees);
-        setCity(city);
-        setCountry(country);
+    public Account(String companyName, String industry, Integer employees, String city, String country,
+                   List<Contact> contacts, List<Opportunity> opportunities) {
+        this.companyName = companyName;
+        this.industry = industry;
+        this.employees = employees;
+        this.city = city;
+        this.country = country;
+        this.contacts = contacts;
+        this.opportunities = opportunities;
     }
+
+
 }

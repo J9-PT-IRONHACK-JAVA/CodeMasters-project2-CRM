@@ -42,9 +42,11 @@ public class Commands {
                   You will be prompted to input the info necessary to create an ooportunity instance.
                 - To \033[1;32mchange the status of an opportunity\033[0m, type: \033[1;32m'close-won ##' or 'close-lost ##'\033[0m, 
                   where '##' corresponds to the unique numeric identifier of the opportunity to modify.
-                - To \033[1;32mshow all opportunities \033[0m, type: \033[1;32m'Show Opportunities'\033[0m.
+                - To \033[1;32mshow all opportunities \033[0m, type: \033[1;32m'Show Opportunities'\033[0m.                
+                - To \033[1;32mlookup leads by name\033[0m, type: \033[1;32m'Search Leads ####'\033[0m, where '####' corresponds to the first or last name you want to search.
+                  The result will be a list of Leads with names containing the name introduced. 
                 - To \033[1;33mshow this list of commands \033[0m, type: \033[1;33m'show commands'\033[0m. 
-                
+                                
                 ============= ======== ===== === == = =
                 
                 """);

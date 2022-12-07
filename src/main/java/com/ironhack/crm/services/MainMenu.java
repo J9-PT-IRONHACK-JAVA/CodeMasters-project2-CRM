@@ -1,8 +1,6 @@
 package com.ironhack.crm.services;
 
-import com.ironhack.crm.services.ServiceManager;
 import com.ironhack.crm.utils.Commands;
-import com.ironhack.crm.utils.ScannerConfig;
 import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
@@ -62,6 +60,10 @@ public class MainMenu {
 
             } else if (command.equals("Show Opportunities")) {
                 opportunityService.showAllOpps();
+
+            } else if (command.split(" ")[0].equals("Search")) {
+                var name = command.split(" ")[2];
+                leadService.findLeadsByName(name);
 
             } else {
                 System.out.println("Wrong command!");

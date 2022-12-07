@@ -31,7 +31,6 @@ public class LeadService {
     }
 
     public Lead createNewLead() {
-        var newLead = new Lead();
         String leadName = null;
         String phoneNumber = null;
         String email = null;
@@ -48,7 +47,7 @@ public class LeadService {
             } else leadName = userInput.nextLine();
 
         }
-        newLead.setName(leadName);
+
 
         while (phoneNumber == null) {
             System.out.println("Please introduce the phone number of your new lead");
@@ -59,18 +58,18 @@ public class LeadService {
                 System.out.println("Wrong input. Please introduce a valid phone number.");
             } else phoneNumber = userInput.nextLine();
         }
-        newLead.setPhoneNumber(phoneNumber);
+
 
         while (email == null) {
             System.out.println("Please introduce the email address of your new lead");
 
             var input = userInput.nextLine();
 
-            if (!InputValidations.validateEmail(userInput.nextLine())) {
+            if (!InputValidations.validateEmail(input)) {
                 System.out.println("Wrong input. Please introduce a valid email.");
             } else email = userInput.nextLine();
         }
-        newLead.setEmail(email);
+
 
         while (companyName == null) {
             System.out.println("Please introduce the Company Name of your new lead");
@@ -79,7 +78,8 @@ public class LeadService {
                 companyName = userInput.nextLine();
             }
         }
-        newLead.setCompanyName(companyName);
+
+        var newLead = new Lead(leadName, phoneNumber, email, companyName);
 
         leadRepository.save(newLead);
 
@@ -105,11 +105,15 @@ public class LeadService {
 
         opportunityRepository.save(opportunity);
 
+
+
+//        deleteLead(leadId);
+
         return opportunity;
     }
 
-    public void findLeadByName(String name) {
-        var lead = leadRepository.findLeadByNameEquals(name);
+    public void findLeadsByName(String name) {
+        var lead = leadRepository.findLeadByNameContaining(name);
         System.out.println(lead);
     }
 
@@ -118,6 +122,8 @@ public class LeadService {
         System.out.println(leads);
     }
 
-    // delete lead (after contact added to an account)
+    public void deleteLead(Long leadId) {
+        leadRepository.deleteLeadByLeadId(leadId);
+    }
 
 }

@@ -60,12 +60,13 @@ public class OpportunityService {
 
                 var quantity = Integer.parseInt(userInput.nextLine());
 
-                selectedProduct = userInput.nextLine();
-            } catch (IllegalArgumentException e) {
+                quantityDesired = Integer.valueOf(quantity);
+            } catch (Exception e) {
                 System.out.println("""
                         Invalid input:
                         Please introduce an integer number corresponding to the amount of trucks desired by the potential customer.
                         """);
+                e.getMessage();
             }
         }
         opportunityFromLead.setQuantity(quantityDesired);
@@ -77,13 +78,13 @@ public class OpportunityService {
 
     public void changeOpportunityStatus(Long opportunityId, String command) {
 
-        if (command.split("-")[1].equals("won")) {
+        if (command.split("-")[1].contains("won")) {
             var opportunityToUpdate = opportunityRepository.findOpportunityByOpportunityId(opportunityId);
             if (opportunityToUpdate.isPresent()) {
                 opportunityToUpdate.get().setStatus(OpportunityStatus.CLOSED_WON);
                 opportunityRepository.save(opportunityToUpdate.get());
             }
-        } else if (command.split("-")[1].equals("lost")) {
+        } else if (command.split("-")[1].contains("lost")) {
             var opportunityToUpdate =  opportunityRepository.findOpportunityByOpportunityId(opportunityId);
             if (opportunityToUpdate.isPresent()) {
                 opportunityToUpdate.get().setStatus(OpportunityStatus.CLOSED_LOST);
