@@ -1,11 +1,13 @@
 package com.ironhack.crm.services;
 
 import com.ironhack.crm.utils.Commands;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 
 @Component
+@RequiredArgsConstructor
 public class MainMenu {
 
     private final LeadService leadService;
@@ -16,16 +18,6 @@ public class MainMenu {
     private final Scanner userInput;
     private final Commands commands;
 
-    public MainMenu(LeadService leadService, OpportunityService opportunityService, ContactService contactService,
-                    SalesRepService salesRepService, AccountService accountService, Scanner userInput, Commands commands) {
-        this.leadService = leadService;
-        this.opportunityService = opportunityService;
-        this.contactService = contactService;
-        this.salesRepService = salesRepService;
-        this.accountService = accountService;
-        this.userInput = userInput;
-        this.commands = commands;
-    }
 
     public void start() {
 
@@ -33,8 +25,8 @@ public class MainMenu {
 
         commands.displayAvailableCommands();
 
-        do {
 
+        do {
             System.out.println("Type your command:");
             command = userInput.nextLine();
 
@@ -45,7 +37,7 @@ public class MainMenu {
                 leadService.showAllLeads();
 
             } else if (command.split(" ")[0].equals("Lookup")) {
-                opportunityService.printOpportunity(command);
+//                opportunityService.printOpportunity(command);
 
             } else if (command.split(" ")[0].equals("convert")) {
                 Long id = Long.valueOf(command.split(" ")[1]);
@@ -65,7 +57,16 @@ public class MainMenu {
                 var name = command.split(" ")[2];
                 leadService.findLeadsByName(name);
 
-            } else {
+            } else if (command.equals("Show Accounts")) {
+                accountService.showAllAccounts();
+
+            } else if (command.split(" ")[0].equals("Lookup-opp")) {
+                opportunityService.printOpportunity(command);
+
+            } else if (command.equals("Show Contacts")) {
+                contactService.findAllContacts();
+
+            }  else {
                 System.out.println("Wrong command!");
             }
         } while(!command.equals("exit"));
