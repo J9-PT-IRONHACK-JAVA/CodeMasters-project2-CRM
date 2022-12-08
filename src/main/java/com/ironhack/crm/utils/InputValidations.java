@@ -25,4 +25,13 @@ public class InputValidations {
         return email.matches("^(.+)@(.+)$");
     }
 
+    public static boolean validateLettersOnly(String industry) {
+        return industry.matches("^[a-zA-Z]+$");
+    }
+
+    public static boolean validateCityOrCountry(String location) {
+        return location.matches("^[a-zA-Z][a-zA-Z\\\\s-]+[a-zA-Z]$");
+    }
+
+
 }

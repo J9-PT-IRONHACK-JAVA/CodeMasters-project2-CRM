@@ -3,32 +3,25 @@ package com.ironhack.crm.services;
 import com.ironhack.crm.model.Contact;
 import com.ironhack.crm.model.Lead;
 import com.ironhack.crm.model.Opportunity;
+import com.ironhack.crm.repository.AccountRepository;
 import com.ironhack.crm.repository.ContactRepository;
 import com.ironhack.crm.repository.LeadRepository;
 import com.ironhack.crm.repository.OpportunityRepository;
 import com.ironhack.crm.utils.InputValidations;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Scanner;
 
 @Service
+@RequiredArgsConstructor
 public class LeadService {
 
     private final LeadRepository leadRepository;
     private final ContactRepository contactRepository;
     private final OpportunityService opportunityService;
     private final Scanner userInput;
-    private final OpportunityRepository opportunityRepository;
-
-    public LeadService(LeadRepository leadRepository, ContactRepository contactRepository,
-                       OpportunityService opportunityService, Scanner userInput,
-                       OpportunityRepository opportunityRepository) {
-        this.leadRepository = leadRepository;
-        this.contactRepository = contactRepository;
-        this.opportunityService = opportunityService;
-        this.userInput = userInput;
-        this.opportunityRepository = opportunityRepository;
-    }
+    private final AccountService accountService;
 
     public Lead createNewLead() {
         String leadName = null;
@@ -44,8 +37,7 @@ public class LeadService {
             if (!InputValidations.validateName(input)) {
                 System.out.println("Wrong input. Please introduce a name in the format 'Firstname Lastname'.\n");
 
-            } else leadName = userInput.nextLine();
-
+            } else leadName = input;
         }
 
 
@@ -56,7 +48,7 @@ public class LeadService {
 
             if (!InputValidations.validatePhone(input)) {
                 System.out.println("Wrong input. Please introduce a valid phone number.");
-            } else phoneNumber = userInput.nextLine();
+            } else phoneNumber = input;
         }
 
 
@@ -67,7 +59,7 @@ public class LeadService {
 
             if (!InputValidations.validateEmail(input)) {
                 System.out.println("Wrong input. Please introduce a valid email.");
-            } else email = userInput.nextLine();
+            } else email = input;
         }
 
 
@@ -103,8 +95,7 @@ public class LeadService {
 
         var opportunity = opportunityService.createOpportunityFromContact(opportunityDecisionMaker);
 
-        opportunityRepository.save(opportunity);
-
+        var account = accountService.createAccountFromLead(opportunityDecisionMaker, opportunity);
 
 
 //        deleteLead(leadId);

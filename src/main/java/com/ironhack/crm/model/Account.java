@@ -35,5 +35,16 @@ public class Account {
         this.opportunities = opportunities;
     }
 
-
+    @Override
+    public String toString() {
+        return "Account:"
+                + "   id=" + id + "\n"
+                + " companyName= " + companyName + "\n"
+                + " industry= " + industry + "\n"
+                + " employees= " + employees + "\n"
+                + " city= " + city + "\n"
+                + " country= " + country + "\n"
+                + " contacts= " + contacts + "\n"
+                + " opportunities=" + opportunities + "\n";
+    }
 }
