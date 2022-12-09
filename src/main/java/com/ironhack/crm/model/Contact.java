@@ -33,7 +33,8 @@ public class Contact {
                 "   name= " + name + "\n" +
                 "   phoneNumber= " + phoneNumber + "\n" +
                 "   email= " + email + "\n" +
-                "   company= " + company + "\n";
+                "   company= " + company + "\n" +
+                "======== ===== === == = =" + "\n";
     }
 }
 

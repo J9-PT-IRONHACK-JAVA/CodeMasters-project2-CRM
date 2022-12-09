@@ -36,7 +36,7 @@ public class AccountService {
         opportunities.add(opportunity);
 
         while (industry == null || industry.equals("")) {
-            System.out.println("Please introduce the industry of your lead's company: " + companyName);
+            System.out.println("Please introduce the \033[1;34mindustry\033[0m of your lead's company: " + companyName);
 
             var input= userInput.nextLine();
 
@@ -47,7 +47,7 @@ public class AccountService {
         }
 
         while (employees == null) {
-            System.out.println("Please introduce the number of employees of your lead's company: " + companyName);
+            System.out.println("Please introduce the \033[1;34mnumber of employees\033[0m of your lead's company: " + companyName);
 
             try {
                 employees = Integer.valueOf(userInput.nextLine());
@@ -59,7 +59,7 @@ public class AccountService {
         }
 
         while (city == null || city.equals("")) {
-            System.out.println("Please introduce the city where the Head Quarters of your lead's company: " + companyName + " is located.");
+            System.out.println("Please introduce the \033[1;34mcity\033[0m where the Head Quarters of your lead's company: " + companyName + " is located.");
 
             var input= userInput.nextLine();
 
@@ -70,7 +70,7 @@ public class AccountService {
         }
 
         while (country == null || country.equals("")) {
-            System.out.println("Please introduce the country where the Head Quarters of your lead's company: " + companyName + " is located.");
+            System.out.println("Please introduce the \033[1;34mcountry\033[0m where the Head Quarters of your lead's company: " + companyName + " is located.");
 
             var input= userInput.nextLine();
 

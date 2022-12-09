@@ -91,12 +91,18 @@ public class LeadService {
     // lead to opportunity conversion (aggregates lead->contact + opp creation)
     public Opportunity leadToOpportunity(Long leadId) {
 
+        var lead = leadRepository.findLeadByLeadId(leadId);
+        System.out.println("Lead to convert: \n" + lead);
+
         var opportunityDecisionMaker = convertLeadToContact(leadId);
 
         var opportunity = opportunityService.createOpportunityFromContact(opportunityDecisionMaker);
 
         var account = accountService.createAccountFromLead(opportunityDecisionMaker, opportunity);
 
+        System.out.println("\033[1;34mAccount created:\033[0m \n" + account);
+        System.out.println("\033[1;34mOpportunity created:\033[0m \n" + opportunity);
+        System.out.println("\033[1;34mOpportunity decision-maker:\033[0m \n" + opportunityDecisionMaker);
 
 //        deleteLead(leadId);
 
