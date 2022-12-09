@@ -35,7 +35,7 @@ public class Commands {
                 \033[1;31mIMPORTANT\033[0m 
                 \033[1;31mThe commands are Case-Sensitive!\033[0m
 
-                You have the following commands available:
+                You have the following \033[1;32commands available:\033[0m
                 > Leads
                 - To \033[1;32mcreate a new lead\033[0m, type: \033[1;33m'New Lead'\033[0m. You will be prompted to input the information necessary to create the lead instance.
                 - To \033[1;32mlookup a lead\033[0m, type: \033[1;33m'Lookup Lead ##'\033[0m, where '##' corresponds to the unique numeric identifier of the lead to show.
