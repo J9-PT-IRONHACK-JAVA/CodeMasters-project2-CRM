@@ -15,6 +15,7 @@ public class MainMenu {
     private final ContactService contactService;
     private final SalesRepService salesRepService;
     private final AccountService accountService;
+    private final ReportsService reportsService;
     private final Scanner userInput;
     private final Commands commands;
 
@@ -65,6 +66,9 @@ public class MainMenu {
 
             } else if (command.equals("Show Contacts")) {
                 contactService.findAllContacts();
+
+            } else if (command.split(" ")[0].equals("Report")) {
+                reportsService.reportCaller(command);
 
             }  else {
                 System.out.println("Wrong command!");

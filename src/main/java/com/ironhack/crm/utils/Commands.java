@@ -57,6 +57,9 @@ public class Commands {
                 > Contacts
                 - To \033[1;32mshow all contacts\033[0m, type: \033[1;33m'Show Contacts'\033[0m.
                 
+                > Reports
+                - To \033[1;32mcount opportunites by product\033[0m, type: \033[1;33m'Report Opportunity by product ###'\033[0m. Where '####' corresponds to the name of the product. 
+                
                 > Other  
                 - To \033[1;32mshow this list of commands \033[0m, type: \033[1;33m'show commands'\033[0m. 
                                 
@@ -64,5 +67,7 @@ public class Commands {
                 
                 """);
     }
+
+
 
 }
