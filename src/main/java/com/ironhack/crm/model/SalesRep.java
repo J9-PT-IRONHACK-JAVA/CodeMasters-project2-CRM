@@ -19,4 +19,13 @@ public class SalesRep {
         this.salesRepName = salesRepName;
         this.salesRepEmail = salesRepEmail;
     }
+
+    @Override
+    public String toString() {
+        return "SalesRep: " +
+                "   salesRepId= " + salesRepId + "\n" +
+                "   salesRepName= " + salesRepName + "\n" +
+                "   salesRepEmail= " + salesRepEmail + "\n" +
+                "======== ===== === == = =" + "\n";
+    }
 }

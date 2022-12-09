@@ -33,6 +33,7 @@ public class Lead {
                 "   name= " + name + "\n" +
                 "   phoneNumber= " + phoneNumber + "\n" +
                 "   email= " + email + "\n" +
-                "   companyName= " + companyName + "\n";
+                "   companyName= " + companyName + "\n" +
+                "======== ===== === == = =" + "\n";
     }
 }

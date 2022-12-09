@@ -42,6 +42,7 @@ public class Opportunity {
                 + " product = " + product + "\n"
                 + " quantity = " + quantity + "\n"
                 + " decisionMaker = " + decisionMaker + "\n"
-                + " status = " + status + "\n";
+                + " status = " + status + "\n" +
+                "======== ===== === == = =" + "\n";
     }
 }

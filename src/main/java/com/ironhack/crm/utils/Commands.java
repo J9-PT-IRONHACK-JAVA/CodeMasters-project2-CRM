@@ -37,7 +37,7 @@ public class Commands {
                 You have the following commands available:
                 > Leads
                 - To \033[1;32mcreate a new lead\033[0m, type: \033[1;32m'New Lead'\033[0m. You will be prompted to input the information necessary to create the lead instance.
-                - To \033[1;32mlookup a lead\033[0m, type: \033[1;32m'Lookup ##'\033[0m, where '##' corresponds to the unique numeric identifier of the lead to show.
+                - To \033[1;32mlookup a lead\033[0m, type: \033[1;32m'Lookup Lead ##'\033[0m, where '##' corresponds to the unique numeric identifier of the lead to show.
                 - To \033[1;32m'show all leads\033[0m, type: \033[1;32m'Show Leads'\033[0m.
                 - To \033[1;34mlookup leads by name\033[0m, type: \033[1;32m'Search Leads ####'\033[0m, where '####' corresponds to the first or last name you want to search.
                   The result will be a list of Leads with names containing the name introduced.
