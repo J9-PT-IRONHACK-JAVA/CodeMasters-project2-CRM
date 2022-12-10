@@ -23,7 +23,7 @@ IMPORTANT: The commands are Case-Sensitive!
 - To show all opportunities, type: “Show opportunities”.
 - To lookup an opportunity, type: “Lookup-opp ###” where “###” corresponds to the unique numeric identifier of the opportunity.
 - Tho change the status of an opportunity, type: “Close-won ###” or “Close-lost ###” where “###” corresponds to the unique numeric identifier of the opportunity to modify.
-
+ 
 > Accounts
 - To show all accounts, type: “Show accounts”.
 
