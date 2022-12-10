@@ -3,11 +3,9 @@ package com.ironhack.crm.services;
 import com.ironhack.crm.model.Contact;
 import com.ironhack.crm.model.Lead;
 import com.ironhack.crm.model.Opportunity;
-import com.ironhack.crm.repository.AccountRepository;
-import com.ironhack.crm.repository.ContactRepository;
-import com.ironhack.crm.repository.LeadRepository;
-import com.ironhack.crm.repository.OpportunityRepository;
+import com.ironhack.crm.repository.*;
 import com.ironhack.crm.utils.InputValidations;
+import com.ironhack.crm.utils.SalesRepStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +20,7 @@ public class LeadService {
     private final OpportunityService opportunityService;
     private final Scanner userInput;
     private final AccountService accountService;
+    private final SalesRepRepository salesRepRepository;
 
     public Lead createNewLead() {
         String leadName = null;
@@ -71,7 +70,8 @@ public class LeadService {
             }
         }
 
-        var newLead = new Lead(leadName, phoneNumber, email, companyName);
+        var newLead = new Lead(leadName, phoneNumber, email, companyName,
+                salesRepRepository.findSalesRepByStatusIs(SalesRepStatus.ONLINE).get(0));
 
         leadRepository.save(newLead);
 

@@ -15,25 +15,27 @@ public class DataLoader {
     private final SalesRepRepository salesRepRepository;
     private final LeadRepository leadRepository;
 
+
     @Bean
-    void loadSalesRepData(){
+    void loadLeadsAndSalesRepsData() {
+
         var salesRep1 = new SalesRep("Juana Gomez", "juana.gomez@email.com", "123456");
         salesRepRepository.save(salesRep1);
 
         var salesRep2 = new SalesRep("Lucho Padrique", "lucho@amunique.com", "MarruecosVive");
         salesRepRepository.save(salesRep2);
 
-    }
-
-    @Bean
-    void loadLeadsData() {
-        var lead1 = new Lead("Pepe Perez", "+34 666123987", "pepe@desatranques.com", "Desatranques Jaén");
+        var lead1 = new Lead("Pepe Perez", "+34 666123987", "pepe@desatranques.com", "Desatranques Jaén",
+                salesRep1);
         leadRepository.save(lead1);
 
-        var lead2 = new Lead("Tomás Torquemada", "+34 666666666", "tomas@santainquisicion.gov", "La Santa Inquisición");
+
+        var lead2 = new Lead("Tomás Torquemada", "+34 666666666", "tomas@santainquisicion.gov",
+                "La Santa Inquisición", salesRep1);
         leadRepository.save(lead2);
 
-        var lead3 = new Lead("Eliseo Reclus", "+33 666987312", "eliseo@paris.com", "Geografía en Globo");
+        var lead3 = new Lead("Eliseo Reclus", "+33 666987312", "eliseo@paris.com",
+                "Geografía en Globo", salesRep1);
         leadRepository.save(lead3);
     }
 

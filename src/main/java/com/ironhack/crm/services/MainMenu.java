@@ -69,19 +69,17 @@ public class MainMenu {
             } else if (command.equals("show reports")) {
                 commands.displayAvailableReports();
 
-            }  else if (!command.equals("exit")){
+            }  else if (command.split(" ")[0].equals("Report") || command.split(" ")[0].equals("Mean") ||
+                    command.split(" ")[0].equals("Median") || command.split(" ")[0].equals("Max") ||
+                    command.split(" ")[0].equals("Min")) {
+//                reportsService.reportCaller(command);
+
+            } else if (command.equals("logout")) {
+                salesRepService.salesRepLogOut();
+
+            } else {
                 System.out.println("Wrong command!");
             }
-//            }  else if (command.split(" ")[0].equals("Report") || command.split(" ")[0].equals("Mean") ||
-  //                  command.split(" ")[0].equals("Median") || command.split(" ")[0].equals("Max") ||
-    //                command.split(" ")[0].equals("Min")) {
-//                reportsService.reportCaller(command);
-//
-  //          } else if (command.equals("logout")) {
-    //            salesRepService.salesRepLogOut();
-//
-      //      } else {
-
         } while(!command.equals("exit"));
         userInput.close();
     }

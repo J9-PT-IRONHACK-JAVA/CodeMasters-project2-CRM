@@ -17,12 +17,15 @@ public class Lead {
     private String phoneNumber;
     private String email;
     private String companyName;
+    @ManyToOne
+    private SalesRep salesRep;
 
-    public Lead(String name, String phoneNumber, String email, String companyName) {
+    public Lead(String name, String phoneNumber, String email, String companyName, SalesRep salesRep) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.companyName = companyName;
+        this.salesRep = salesRep;
     }
 
 
@@ -34,6 +37,7 @@ public class Lead {
                 "   phoneNumber= " + phoneNumber + "\n" +
                 "   email= " + email + "\n" +
                 "   companyName= " + companyName + "\n" +
+                "   salesRep= " + salesRep.getSalesRepName() + "\n" +
                 "======== ===== === == = =" + "\n";
     }
 }
