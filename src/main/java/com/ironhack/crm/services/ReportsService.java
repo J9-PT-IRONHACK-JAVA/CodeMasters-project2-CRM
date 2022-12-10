@@ -121,10 +121,10 @@ public class ReportsService {
 
 //* by Country *//
 
-    public void opportunitiesByCountry(String country) {
-        var count = opportunityRepository.countOpportunitiesByCountry(country);
-        System.out.println("The country " + country + " has " + count + " opportunities related to it.");
-    }
+//    public void opportunitiesByCountry(String country) {
+//        var count = opportunityRepository.countOpportunitiesByCountry(country);
+//        System.out.println("The country " + country + " has " + count + " opportunities related to it.");
+//    }
 
 
 }
