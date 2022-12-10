@@ -17,6 +17,7 @@ public interface OpportunityRepository extends JpaRepository<Opportunity, Long> 
 
   // Opportunities by Product
 //  Integer countOpportunitiesByProduct(Trucks product);
+
 //  Integer countClosedWonOpportunitiesByProduct(Trucks product);
 //  Integer countClosedLostOpportunitiesByProduct(Trucks product);
 //  Integer openOpportunitiesByProduct(Trucks product);

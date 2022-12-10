@@ -14,10 +14,6 @@ public class CrmApplication implements CommandLineRunner {
     private final MainMenu mainMenu;
     private final SalesRepService salesRepService;
 
-//    public CrmApplication(MainMenu mainMenu) {
-//        this.mainMenu = mainMenu;
-//    }
-
     public static void main(String[] args) {
         SpringApplication.run(CrmApplication.class, args);
     }

@@ -33,11 +33,24 @@ public class SalesRepService {
         //variable to easily re-use the scanner
         var nameInput = userInput.nextLine();
 
+        String nameToValidate = nameInput;
+        Boolean isNameValidated = false;
+
         //name validation
-        var nameToValidate = nameInput;
-        if (salesRepRepository.findSalesRepBySalesRepName(nameToValidate).get(0) == null) {
-            System.out.println("No SalesRep found under that name, please try again.");
+        while (!isNameValidated) {
+
+            try {
+                if (salesRepRepository.findSalesRepBySalesRepName(nameToValidate).get(0) == null) {
+                    System.out.println("No SalesRep found under that name, please try again.");
+                }
+                isNameValidated = true;
+
+            } catch (Exception e) {
+                System.out.println("Exception - wrong name, please try again");
+            }
         }
+
+
 
 
         //email validation
