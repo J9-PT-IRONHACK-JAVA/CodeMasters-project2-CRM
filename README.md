@@ -3,14 +3,14 @@
 <br/>
 
 ### Installation
-***add details***
+- ***add details***
 
 ### General Usage 
-***add details***
+- ***add details***
 
 ### UML Diagrams
 #### Use-case diagram
 ![img.png](img.png)
 
 #### UML Class diagram
-***add image*** 
+- ***add image*** 

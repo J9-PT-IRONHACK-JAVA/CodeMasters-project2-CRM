@@ -1,9 +1,14 @@
 package com.ironhack.crm.utils;
 
+import com.ironhack.crm.repository.SalesRepRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class InputValidations {
+
+    private final SalesRepRepository salesRepRepository;
 
     public static boolean validateName(String name) {
         Boolean isValidated = null;
@@ -26,7 +31,7 @@ public class InputValidations {
     }
 
     public static boolean validateLettersOnly(String industry) {
-        return industry.matches("^[a-zA-Z]+$");
+        return industry.matches("^[a-zA-Z\s]+$");
     }
 
     public static boolean validateCityOrCountry(String location) {

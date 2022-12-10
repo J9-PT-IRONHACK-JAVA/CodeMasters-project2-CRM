@@ -20,7 +20,7 @@ public class MainMenu {
     private final Commands commands;
 
 
-    public void start() {
+    public void commandsReceptor() {
 
         String command = "start";
 
@@ -67,10 +67,18 @@ public class MainMenu {
             } else if (command.equals("Show Contacts")) {
                 contactService.findAllContacts();
 
-            } else if (command.split(" ")[0].equals("Report")) {
-                reportsService.reportCaller(command);
+            } else if (command.equals("show reports")) {
+                commands.displayAvailableReports();
 
-            }  else {
+            }  else if (command.split(" ")[0].equals("Report") || command.split(" ")[0].equals("Mean") ||
+                    command.split(" ")[0].equals("Median") || command.split(" ")[0].equals("Max") ||
+                    command.split(" ")[0].equals("Min")) {
+//                reportsService.reportCaller(command);
+
+            } else if (command.equals("logout")) {
+                salesRepService.salesRepLogOut();
+
+            } else {
                 System.out.println("Wrong command!");
             }
         } while(!command.equals("exit"));
