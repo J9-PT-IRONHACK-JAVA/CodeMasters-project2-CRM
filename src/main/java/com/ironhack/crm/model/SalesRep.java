@@ -11,9 +11,9 @@ public class SalesRep {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long salesRepId;
-    private String salesRepName;
-    private String salesRepEmail;
+    public static Long salesRepId;
+    public static String salesRepName;
+    public static String salesRepEmail;
 
     public SalesRep(String salesRepName, String salesRepEmail) {
         this.salesRepName = salesRepName;
