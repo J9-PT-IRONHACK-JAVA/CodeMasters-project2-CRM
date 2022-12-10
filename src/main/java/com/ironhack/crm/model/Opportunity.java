@@ -22,6 +22,8 @@ public class Opportunity {
     @OneToOne
     private Contact decisionMaker;
     private OpportunityStatus status;
+    @ManyToOne
+    private SalesRep salesRep;
 
     public Opportunity(Trucks product, Integer quantity, Contact decisionMaker) {
         setProduct(product);
