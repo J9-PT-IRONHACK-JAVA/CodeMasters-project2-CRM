@@ -21,8 +21,6 @@ public class MainMenu {
 
     public void commandsReceptor() {
 
-        System.out.println("WTF");
-
         String command = "start";
 
         commands.displayAvailableCommands();
