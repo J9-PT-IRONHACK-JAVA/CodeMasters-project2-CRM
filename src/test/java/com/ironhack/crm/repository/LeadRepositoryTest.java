@@ -2,6 +2,7 @@ package com.ironhack.crm.repository;
 
 import com.ironhack.crm.CrmApplication;
 import com.ironhack.crm.model.Lead;
+import com.ironhack.crm.model.SalesRep;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,9 +23,12 @@ public class LeadRepositoryTest {
 
     @BeforeEach
     void setUp() {
-        var lucho = new Lead("Lucho Padrique", "+34 613456123", "padrique@email.com", "La Roja");
+        SalesRep juana_gomez = new SalesRep("Juana Gomez", "juana.gomez@email.com", "123456");
+        var lucho = new Lead("Lucho Padrique", "+34 613456123", "padrique@email.com", "La Roja",
+        juana_gomez);
         leadRepository.save(lucho);
-        var pepe = new Lead("Pepe Frog", "+34 675890765", "pepefrog@email.com", "Swamp");
+        var pepe = new Lead("Pepe Frog", "+34 675890765", "pepefrog@email.com", "Swamp",
+                juana_gomez);
         leadRepository.save(pepe);
     }
 

@@ -2,6 +2,7 @@ package com.ironhack.crm.services;
 
 import com.ironhack.crm.CrmApplication;
 import com.ironhack.crm.model.Lead;
+import com.ironhack.crm.model.SalesRep;
 import com.ironhack.crm.repository.LeadRepository;
 import com.ironhack.crm.repository.LeadRepositoryTest;
 import org.junit.jupiter.api.AfterEach;
@@ -30,7 +31,8 @@ class LeadServiceTest {
 
     @BeforeEach
     void setUp() {
-       var lucho = new Lead("Lucho Padrique", "+34 765456879", "lucho@email.com", "La Roja");
+       var lucho = new Lead("Lucho Padrique", "+34 765456879", "lucho@email.com", "La Roja",
+               new SalesRep("Juana Gomez", "juana.gomez@email.com", "123456"));
         leadRepository.save(lucho);
     }
 
@@ -41,7 +43,8 @@ class LeadServiceTest {
 
     @Test
     void createNewLead() {
-        var pepe = new Lead("Pepe Frog", "+34 658123539", "pepe@email.com", "Swamp");
+        var pepe = new Lead("Pepe Frog", "+34 658123539", "pepe@email.com", "Swamp",
+                new SalesRep("Juana Gomez", "juana.gomez@email.com", "123456"));
         assertEquals("Swamp", pepe.getCompanyName());
     }
 
