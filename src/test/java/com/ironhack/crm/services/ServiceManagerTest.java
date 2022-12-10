@@ -13,10 +13,11 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class ServiceManagerTest {
 
+
+
     @BeforeEach
     void setUp() {
-        var lead1 = new Lead("Mike Michaels", "+34 666123456", "mike.michaels@fakemail.com",
-                "Desatranques Jaen");
+
     }
 
     @AfterEach
@@ -24,26 +25,4 @@ class ServiceManagerTest {
 
     }
 
-    @Test
-    void displayAvailableCommands() {
-    }
-
-    @Test
-    void leadToOpportunity() {
-    }
-
-    @Test
-    void convertLeadToContact() {
-        var lead2 = new Lead("Pepe Perez", "+34 666654321", "pepe.perez@fakemail.com",
-                "Desatranques Jaen");
-        var contact1 = ServiceManager.convertLeadToContact(lead2);
-
-        assertSame("Pepe Perez", contact1.getName());
-
-    }
-
-    @Test
-    void createOpportunity() {
-
-    }
 }

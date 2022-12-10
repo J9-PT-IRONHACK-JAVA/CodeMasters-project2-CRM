@@ -25,5 +25,16 @@ public class Contact {
         setEmail(lead.getEmail());
         setCompany(lead.getCompanyName());
     }
+
+    @Override
+    public String toString() {
+        return "Contact: " + "\n" +
+                "   contactId= " + contactId + "\n" +
+                "   name= " + name + "\n" +
+                "   phoneNumber= " + phoneNumber + "\n" +
+                "   email= " + email + "\n" +
+                "   company= " + company + "\n" +
+                "======== ===== === == = =" + "\n";
+    }
 }
 
