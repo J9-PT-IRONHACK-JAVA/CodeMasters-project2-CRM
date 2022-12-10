@@ -3,8 +3,7 @@
 <br/>
 
 ### Installation
-This application 
-is optimized to be used in the terminal
+This application is optimized to be used in the terminal, to execute the program, you must "--- PDTE AÑADIR COMANDOS--"
 
 ### General Usage 
 In order to access the application, at first the user will be required to log in to it.
