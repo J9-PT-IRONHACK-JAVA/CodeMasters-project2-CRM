@@ -18,7 +18,7 @@ public class Account {
     private String industry;
     private Integer employees;
     private String city;
-    private String country;
+    public static String country;
     @OneToMany
     private List<Contact> contacts;
     @OneToMany

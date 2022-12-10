@@ -1,5 +1,6 @@
 package com.ironhack.crm.services;
 
+import com.ironhack.crm.model.Account;
 import com.ironhack.crm.model.Opportunity;
 import com.ironhack.crm.model.SalesRep;
 import com.ironhack.crm.repository.*;
@@ -64,10 +65,10 @@ public class ReportsService {
         //* by Country *//
         } else if (command.contains("by country")) {
             if (command.contains("Report opportunity")){
-              //  opportunitiesByCountry();   ---PDTE
+             opportunitiesByCountry(Account.country);
             }
             else if (command.contains("Report closed won opportunities")){
-
+                closedWonOpportunitiesByCountry(Account.country);
             }
             else if (command.contains("Report closed lost opportunities")){
 
@@ -165,6 +166,10 @@ public class ReportsService {
     public void opportunitiesByCountry(String country) {
         var count = opportunityRepository.countOpportunitiesByCountry(country);
         System.out.println("The country " + country + " has " + count + " opportunities related to it.");
+    }
+    public void closedWonOpportunitiesByCountry(String country) {
+        var count = opportunityRepository.closedWonOpportunitiesByCountry(country);
+        System.out.println("The country " + country + " has " + count + " closed and won opportunities related to it.");
     }
 
 

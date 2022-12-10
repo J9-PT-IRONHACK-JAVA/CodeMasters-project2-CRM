@@ -23,7 +23,7 @@ public interface OpportunityRepository extends JpaRepository<Opportunity, Long> 
 
   // Opportunities by Country
   Integer countOpportunitiesByCountry(String country);
-
+  Integer closedWonOpportunitiesByCountry(String country);
 
 
 //  @Query(value = " ", nativeQuery = true)
