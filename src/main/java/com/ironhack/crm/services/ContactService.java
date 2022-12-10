@@ -14,7 +14,7 @@ public class ContactService {
 
     private final ContactRepository contactRepository;
 
-    public void findAllContacts() {
+        public void findAllContacts() {
         var contacts = contactRepository.findAll();
         System.out.println(contacts);
     }
