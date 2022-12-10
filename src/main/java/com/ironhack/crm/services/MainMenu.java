@@ -9,7 +9,6 @@ import java.util.Scanner;
 @Component
 @RequiredArgsConstructor
 public class MainMenu {
-
     private final LeadService leadService;
     private final OpportunityService opportunityService;
     private final ContactService contactService;
@@ -21,6 +20,8 @@ public class MainMenu {
 
 
     public void start() {
+
+        System.out.println("WTF");
 
         String command = "start";
 
@@ -70,7 +71,7 @@ public class MainMenu {
             } else if (command.split(" ")[0].equals("Report")) {
                 reportsService.reportCaller(command);
 
-            }  else {
+            }  else if (!command.equals("exit")){
                 System.out.println("Wrong command!");
             }
         } while(!command.equals("exit"));

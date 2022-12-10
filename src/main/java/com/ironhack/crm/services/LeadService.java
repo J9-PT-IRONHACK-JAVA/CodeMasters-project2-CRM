@@ -83,7 +83,7 @@ public class LeadService {
     // lead to contact conversion
     public Contact convertLeadToContact(Long leadId) {
         var leadToConvert = leadRepository.findLeadByLeadId(leadId);
-        var contactFromLead = new Contact(leadToConvert);
+        var contactFromLead = new Contact(leadToConvert.get());
         contactRepository.save(contactFromLead);
         return contactFromLead;
     }
