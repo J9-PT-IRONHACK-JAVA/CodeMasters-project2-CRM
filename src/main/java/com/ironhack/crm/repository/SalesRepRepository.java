@@ -11,6 +11,7 @@ import java.util.Optional;
 @Repository
 public interface SalesRepRepository extends JpaRepository<SalesRep, Long> {
 
+
     List<SalesRep> findSalesRepBySalesRepName(String name);
 
 //    List<SalesRep> findSalesRepByStatusIsSalesRepStatus_Online();
@@ -30,4 +31,16 @@ public interface SalesRepRepository extends JpaRepository<SalesRep, Long> {
 //    Integer openOpportunitiesbySalesRep(String salesRepName);
 
 
+    static Integer countOpportunitiesBySalesRep(String salesRepName) {
+        return null;
+    }
+    static Integer closedWonOpportunitiesBySalesRep(String salesRepName) {
+        return null;
+    }
+    static Integer closedLostOpportunitiesBySalesRep(String salesRepName) {
+        return null;
+    }
+    static Integer openOpportunitiesbySalesRep(String salesRepName) {
+        return null;
+    }
 }

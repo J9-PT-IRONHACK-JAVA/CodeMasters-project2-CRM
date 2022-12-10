@@ -1,5 +1,7 @@
 package com.ironhack.crm.services;
 
+import com.ironhack.crm.model.Opportunity;
+import com.ironhack.crm.model.SalesRep;
 import com.ironhack.crm.repository.*;
 import com.ironhack.crm.utils.Trucks;
 import lombok.RequiredArgsConstructor;
@@ -117,16 +119,12 @@ public class ReportsService {
 //    }
 
 
-// by Country
+//* by Country *//
 
-//    public void opportunitiesByCountry(String country) {
-//
-//        var count = opportunityRepository.countOpportunitiesByCountry(country);
-//
-//
-//        System.out.println("The country " + country + " has " + count + " opportunities related to it.");
-//    }
+    public void opportunitiesByCountry(String country) {
+        var count = opportunityRepository.countOpportunitiesByCountry(country);
+        System.out.println("The country " + country + " has " + count + " opportunities related to it.");
+    }
 
-// by SalesRep
 
 }
