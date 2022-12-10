@@ -119,6 +119,12 @@ public class LeadService {
         System.out.println(leads);
     }
 
+    public void printLeadById(String command) {
+        var leadId = Long.parseLong(command.split(" ")[2]);
+        var lead = leadRepository.findLeadByLeadId(leadId);
+        System.out.println(lead);
+    }
+
     public void deleteLead(Long leadId) {
         leadRepository.deleteLeadByLeadId(leadId);
     }

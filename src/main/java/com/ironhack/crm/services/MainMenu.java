@@ -37,7 +37,7 @@ public class MainMenu {
                 leadService.showAllLeads();
 
             } else if (command.split(" ")[0].equals("Lookup")) {
-//                opportunityService.printOpportunity(command);
+                leadService.printLeadById(command);
 
             } else if (command.split(" ")[0].equals("convert")) {
                 Long id = Long.valueOf(command.split(" ")[1]);
