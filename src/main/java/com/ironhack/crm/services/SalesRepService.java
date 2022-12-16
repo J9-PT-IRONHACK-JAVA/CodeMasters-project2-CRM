@@ -86,7 +86,7 @@ public class SalesRepService {
 
 
 
-        if (repWithEmail.get().getSalesRepEmail().equals(emailToValidate)) {
+        if (repWithEmail.get().getPassword().equals(passwordToValidate)) {
             isPasswordValidated = true;
             repWithEmail.get().setStatus(SalesRepStatus.ONLINE);
             System.out.println("The salesRep " + repWithEmail.get().getSalesRepName() + " is now " + repWithEmail.get().getStatus());
